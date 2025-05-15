@@ -69,5 +69,14 @@ function IsPedInteractable(entity)
     if InteractableModels[model] then
         return InteractableModels[model]
     end
+
+    if InteractableGlobalPeds and not IsPedAPlayer(entity) then -- Fallback to global ped rules (if defined and not a player)
+        return {
+            type = InteractableGlobalPeds.type or "ped",
+            proximity = InteractableGlobalPeds.proximity or 3.0,
+            icon = InteractableGlobalPeds.icon or "user",
+            menu = InteractableGlobalPeds.menu
+        }
+    end
     return false
 end

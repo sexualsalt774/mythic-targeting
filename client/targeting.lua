@@ -283,6 +283,19 @@ function StartTargeting()
                     end
                 end
 
+                if Utils:GetTableLength(InteractableGlobalPeds) > 0 then
+                    local peds = GetGamePool("CPed")
+                    for i = 1, #peds do
+                        local ped = peds[i]
+                        if DoesEntityExist(ped) and not IsPedAPlayer(ped) and IsPedHuman(ped) then
+                            local coords = getEntityMiddle(ped)
+                            if coords and #(LocalPlayer.state.position - coords) <= (InteractableGlobalPeds.proximity or 3.0) then
+                                DrawPoints[#DrawPoints+1] = coords
+                            end
+                        end
+                    end
+                end
+
                 Wait(1000)
             end
         end)
