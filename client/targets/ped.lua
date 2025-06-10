@@ -24,7 +24,9 @@ TARGETING.AddGlobalPed = function(self, menuArray)
     if type(menuArray) ~= 'table' then return end
     
     if Utils:GetTableLength(InteractableGlobalPeds) > 0 then
-        table.insert(InteractableGlobalPeds.menu, menuArray)
+        for _, option in ipairs(menuArray) do
+            table.insert(InteractableGlobalPeds.menu, option)
+        end
         return Utils:GetTableLength(InteractableGlobalPeds.menu) -- Returns index so you can remove it
     else
         InteractableGlobalPeds = {
