@@ -1,7 +1,7 @@
 local IS_SPAWNED = false
 
 TargetableObjectModels, TargetableEntities = {}, {}
-InteractionZones, InteractablePeds, InteractableModels = {}, {}, {}
+InteractionZones, InteractablePeds, InteractableGlobalPeds, InteractableModels = {}, {}, {}, {}
 
 AddEventHandler('Targeting:Shared:DependencyUpdate', RetrieveComponents)
 function RetrieveComponents()
