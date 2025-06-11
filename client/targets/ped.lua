@@ -23,11 +23,12 @@ end
 TARGETING.AddGlobalPed = function(self, menuArray)
     if type(menuArray) ~= 'table' then return end
     
+    if not Utils then Utils = exports['mythic-base']:FetchComponent('Utils') end -- Temp Safety for nil Utils
+    
     if Utils:GetTableLength(InteractableGlobalPeds) > 0 then
         for _, option in ipairs(menuArray) do
             table.insert(InteractableGlobalPeds.menu, option)
         end
-        return Utils:GetTableLength(InteractableGlobalPeds.menu) -- Returns index so you can remove it
     else
         InteractableGlobalPeds = {
             type = 'ped',
@@ -36,13 +37,15 @@ TARGETING.AddGlobalPed = function(self, menuArray)
             proximity = 3.0,
         }
     end
+    return Utils:GetTableLength(InteractableGlobalPeds.menu) -- Returns index so you can remove it
 end
 
 TARGETING.RemoveGlobalPed = function(self, menuIndex)
-    if #InteractableGlobalPeds > 0 then
+    if Utils:GetTableLength(InteractableGlobalPeds) > 0 then
         InteractableGlobalPeds.menu[menuIndex] = nil
     end
 end
+
 
 TARGETING.AddPedModel = function(self, modelId, icon, menuArray, proximity)
     if not modelId then return end
