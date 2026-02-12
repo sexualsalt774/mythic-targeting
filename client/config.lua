@@ -393,6 +393,32 @@ Config.VehicleMenu = {
 		end,
 		minDist = 10.0,
 	},
+    {
+                icon = "bicycle",
+                text = "Pick Up Bike",
+                event = "Vehicles:Client:CarryBike",
+                data = {},
+                isEnabled = function(data, entityData)
+                        if not DoesEntityExist(entityData.entity) then
+                                return false
+                        end
+
+                        if GetVehicleClass(entityData.entity) ~= 13 then
+                                return false
+                        end
+
+                        if LocalPlayer.state.isDead or LocalPlayer.state.doingAction or LocalPlayer.state.carryingBike then
+                                return false
+                        end
+
+                        if IsPedInAnyVehicle(LocalPlayer.state.ped, false) then
+                                return false
+                        end
+
+                        return #(GetEntityCoords(entityData.entity) - GetEntityCoords(LocalPlayer.state.ped)) <= 2.5
+                end,
+                minDist = 3.0,
+    },
 	{
         icon = 'car-burst',
         isEnabled = function(data, entityData)
