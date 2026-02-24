@@ -15,4 +15,10 @@ client_scripts {
 
     'client/*.lua',
     'client/targets/*.lua',
+    'client/compat/ox_target.lua',  -- ox_target bridge (drag-and-drop)
 }
+
+-- Tells FiveM's resource system that this resource satisfies ox_target.
+-- Any resource that lists `dependency 'ox_target'` will now resolve to
+-- mythic-targeting without needing code changes.
+provide 'ox_target'
