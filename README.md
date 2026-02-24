@@ -7,6 +7,8 @@ directly with **mythic-targeting** without any code changes.
 
 ## Installation (drag and drop)
 
+## Manual Installation (For Edited mythic-targeting Versions)
+If you are running a custom/modified version of mythic-targeting and do not want to replace it entirely:
 1. Copy `client/compat/ox_target.lua` into your `mythic-targeting` resource at
    the path `client/compat/ox_target.lua`.
 
